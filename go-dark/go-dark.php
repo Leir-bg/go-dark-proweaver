@@ -14,7 +14,7 @@ function test_plugin_setup_menu(){
 }
 
 function test_init(){
-    echo "<h1>Hello World!</h1>";
+    echo "<h1>GO DARK PROWEAVER!</h1>";
 }
 
 /** Hook Dark Mode */
