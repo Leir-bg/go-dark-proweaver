@@ -16,3 +16,10 @@
 .btnDM input:focus + .btnDM span {box-shadow: 0 0 1px #000;}
 
  .btnDM input:checked + .btnDM span:before {-webkit-transform: translateX(28px);-ms-transform: translateX(28px);transform: translateX(28px);} */
+
+ /* Pseudo Elements */
+.main_con.dm:before {content:url(../images/main_top_cut_dm.png);}
+.btm1_con.dm::before {content:url(../images/btm1_top_cut_dm.png);}
+.btm1_con.dm::after {content:url(../images/btm1_btm_cut_dm.png);}
+.footer_top_con.dm::before {content:url(../images/footer_top_cut_dm.png);}
+.footer_nav.dm::before, .footer_nav.dm::after{background: #222}

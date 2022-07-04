@@ -24,10 +24,10 @@ jQuery(document).ready(function(){
 })
 
 /** DARK MODE FUNCTIONS */
-const defaultExcluded = 'html *:not(script, style, noscript, figure, img, #banner, #banner *:not(.bnr_info, .bnr_info *), .wrapper, .btnDM, .toggle_holder, .toggle_holder *, .toggle_nav_close, .toggle_right_nav.toggle_right_cont, .toggle_right_nav, .toggle_right_cont'
+// const defaultExcluded = 'html *:not(script, style, noscript, figure, img, #banner, #banner *:not(.bnr_info, .bnr_info *), .wrapper, .btnDM, .toggle_holder, .toggle_holder *, .toggle_nav_close, .toggle_right_nav.toggle_right_cont, .toggle_right_nav, .toggle_right_cont'
 
 //mga elementes nga dili nimo ipaapil ug dark mode
-var exemptElem = '#popupVSButton *, #popupVSChat *, .serv_list ul li a, .modal, .main_btn, .bnr_info a, .testimonial_holder a, .btm2_left ul li, .btm2_left ul li *'
+// var exemptElem = '#popupVSButton *, #popupVSChat *, .serv_list ul li a, .modal, .main_btn, .bnr_info a, .testimonial_holder a, .btm2_left ul li, .btm2_left ul li *'
 
 //"call to" functions
 /** SET TO DARK MODE */
@@ -36,15 +36,29 @@ function setDark(){
 	// 	$(this).css('background', '#222')
 	// 	$(this).css('color', '#fff')
 	// })
-    $('.main_con, .btm1_con, .footer_top_con, .footer_nav').addClass('dm');
 
-    $('header, #nav_area, #main_area, #bottom2, .footer_btm').css({'background':'#222','color':'#fff'});
-    $('header, #nav_area, #main_area, #bottom2, .footer_btm').find('*').css({'background':'#222','color':'#fff'});
+    $('.main_con, .btm1_con, .footer_top_con, .footer_nav').addClass('dm'); //para sa pseudo elements ni siya
 
-    $('.bnr_info, #bottom1, .footer_top').css({'background':'#333','color':'#fff'});
-    $('.bnr_info, #bottom1, .footer_top').find('*').css({'background':'#333','color':'#fff'});
+	/** Applying darkmode css start */
+    $('.header_con, #nav_area, #main_area, div[id^="bottom"]:nth-of-type(2n), .footer_btm, .footer_nav').css({'background':'#222','color':'#fff'});
+    $('.bnr_info, div[id^="bottom"]:nth-of-type(2n+1), .footer_top').css({'background':'#333','color':'#fff'});
 
-    $('header, #main_area, #bottom2, .bnr_info, #bottom1').find('a, a span').css({'background':'','color':''});
+    $('*').each(function() {
+        if( $(this).css('color') == 'rgb(69, 69, 69)' || $(this).css('color') == 'rgb(26, 26, 26)' || $(this).css('color') == 'rgb(51, 51, 51)' ) {
+            $(this).css('color','#fff');
+        }
+          
+        if( $(this).css('background') == 'rgb(255, 255, 255)' || $(this).css('background') == 'rgb(245, 245, 245)' ) {
+            $(this).css('background','#222');
+        }
+    });
+	/** Applying darkmode css end */
+
+    $('*').find('li, a:not(nav.page_nav ul li a, .footer_nav ul li a), a span').css({'background':'','color':''});
+
+    // $('header, #nav_area, #main_area, #bottom2, .footer_btm').find('*').css({'background':'#222','color':'#fff'});
+    // $('.bnr_info, #bottom1, .footer_top').find('*').css({'background':'#333','color':'#fff'});
+
 }
 
 /** REVERT TO DEFAULT */
@@ -56,10 +70,17 @@ function setDefault(){
     $('.main_con, .btm1_con, .footer_top_con, .footer_nav').removeClass('dm');
 
     $('header, #nav_area, #main_area, #bottom2').css({'background':'','color':''});
-    $('header, #nav_area, #main_area, #bottom2').find('*').css({'background':'','color':''});
-
     $('.bnr_info, #bottom1, footer').css({'background':'','color':''});
-    $('.bnr_info, #bottom1, footer').find('*').css({'background':'','color':''});
+
+    $('*').each(function() {
+        if($(this).css('color').length > 0 || $(this).css('background').length > 0) {
+            $(this).css('color','');
+            $(this).css('background','');
+        }
+    });
+
+    // $('header, #nav_area, #main_area, #bottom2').find('*').css({'background':'','color':''});
+    // $('.bnr_info, #bottom1, footer').find('*').css({'background':'','color':''});
 }
 
 //mucheck if naka darkmode ang site
