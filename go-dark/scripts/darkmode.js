@@ -48,7 +48,7 @@ function setDark(){
             $(this).css('color','#fff');
         }
           
-        if( $(this).css('background') == 'rgb(255, 255, 255)' || $(this).css('background') == 'rgb(245, 245, 245)' ) {
+        if( $(this).css('background-color') == 'rgb(255, 255, 255)' || $(this).css('background-color') == 'rgb(245, 245, 245)' ) {
             $(this).css('background','#222');
         }
     });
