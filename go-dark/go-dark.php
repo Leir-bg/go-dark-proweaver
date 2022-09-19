@@ -9,12 +9,14 @@
 
 include 'includes/loadAssets.php';
 include 'includes/adminDashboard.php';
+include 'includes/dbFunctions.php';
 
 class goDark extends loadAssets{
 
     public function __construct(){
         goDark::admin_init();
         loadAssets::construct();
+        // dbFunctions::initDB();
     }
 
     public function admin_init(){
@@ -37,6 +39,13 @@ class goDark extends loadAssets{
     public function admin_dashboard_content(){
         adminDashboard::construct();
     }
+
+    public function plugin_activate(){
+        dbFunctions::on_activation();
+    }
+    register_activation_hook(plugin_dir_url( __FILE__ ), 'plugin_activate')
+
+
 }
 
 new goDark();
