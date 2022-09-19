@@ -7,29 +7,27 @@
  * Author: PRD1113, PRD978, PRD1256
  */
 
+//use go-dark\Class\init;
+
 class goDark{
-    // add_action('admin_menu', 'add_to_menu');
-    
-    // function add_to_menu(){
-    //     add_menu_page( 'Go Dark', 'Go Dark', 'manage_options', 'go-dark', 'init');
-    // }
-    
-    // function init(){
-    
-    // }
 
     public function __construct() {
+        goDark::admin_init();
+        goDark::acf_init();
+    }
+
+    public function admin_init(){
         // Hook into the admin menu
         add_action( 'admin_menu', array( $this, 'create_plugin_settings_page' ) );
+    }
 
+    public function acf_init(){
         include_once( plugin_dir_path( __FILE__ ) . 'vendor/advanced-custom-fields-pro/acf.php' );
         add_filter( 'acf/settings/path', array( $this, 'update_acf_settings_path' ) );
         add_filter( 'acf/settings/dir', array( $this, 'update_acf_settings_dir' ) );
 
         $this->setup_options();
         add_action( 'admin_init', array( $this, 'add_acf_variables' ) );
-
-        //echo get_field( 'heading', 'option' );
     }
     
     public function add_acf_variables() {
@@ -136,7 +134,7 @@ class goDark{
         $capability = 'manage_options';
         $slug = 'go-dark';
         $callback = array( $this, 'plugin_settings_page_content' );
-        $icon = 'dashicons-admin-plugins';
+        $icon = 'dashicons-beer';
         $position = 100;
     
         add_menu_page( $page_title, $menu_title, $capability, $slug, $callback, $icon, $position );
