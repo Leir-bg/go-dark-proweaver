@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Go Dark Proweaver
  * Plugin URI:        https://web4.proweaverlinks.com/MAINTENANCE/FORRESEARCH/
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Dark mode for Proweaver themes.
  * Version:           1.0.0
  * Author:            PRD1113, PRD978, PRD1256
  * Author URI:        https://web4.proweaverlinks.com/MAINTENANCE/FORRESEARCH/

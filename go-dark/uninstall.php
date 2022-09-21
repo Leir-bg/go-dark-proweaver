@@ -25,16 +25,20 @@
  * @package    Go_Dark
  */
 
+global $version;
+
 // If uninstall not called from WordPress, then exit.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+	exit;
+}
 
+function uninstall_plugin(){
 	$table_name = $wpdb->prefix . 'darkmode_presets';
-	$sql = "DROP TABLE IF EXISTS" . $tablename;
 
 	if(!function_exists('dbDelta')) {
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 	}
 
-	dbDelta($sql);
-	exit;
+	$wpdb->query( "DROP TABLE IF EXISTS $table_name" );
 }
+register_uninstall_hook(__FILE__, 'uninstal_plugin')

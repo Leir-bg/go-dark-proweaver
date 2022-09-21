@@ -31,7 +31,7 @@ class Go_Dark_Activator {
 	 */
 	public static function activate() {
 		global $wpdb;
-		global $dark_mode_version;
+		global $version;
 
 		$table_name = $wpdb->prefix . 'darkmode_presets';
 		
@@ -47,7 +47,7 @@ class Go_Dark_Activator {
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		maybe_create_table($table_name, $sql );  
 
-		add_option( 'dark_mode_version', $dark_mode_version );
+		add_option( 'dark_mode_version', $version );
 	}
-
+	
 }
