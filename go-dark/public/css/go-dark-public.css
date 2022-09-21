@@ -1,0 +1,30 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+ /*DARKMODE*/
+.btnDM{position: fixed;bottom: 10px;right: 1%;z-index: 9999; cursor: pointer; width: 80px; height: 40px; background: none !important;}
+/* .btnDM.active{filter: invert(1);} */
+
+.btnDM input { opacity: 0;width: 0;height: 0;}
+
+.btnDM span {position: absolute;cursor: pointer;top: 0;left: 0;right: 0;bottom: 0;background-color: #ccc;-webkit-transition: .4s;transition: .4s; border: 2px solid #fff; border-radius: 40px;}
+
+.btnDM span:before {position: absolute;content: url('../images/dm-icon.png');height: 32px;width: 32px;left: 3%;bottom: 6%;background-color: white;-webkit-transition: .4s;transition: .4s; border-radius: 50%;}
+
+.btnDM.active span{background: #222;}
+.btnDM.active span:before{transform: rotate(180deg);}
+.btnDM.active input:checked, .btnDM.active span:before{-webkit-transform: translateX(125%) rotate(180deg);-ms-transform: translateX(125%) rotate(180deg);transform: translateX(125%) rotate(180deg);}
+/*.btnDM input:checked + .btnDM span {background-color: #000;}
+
+.btnDM input:focus + .btnDM span {box-shadow: 0 0 1px #000;}
+
+ .btnDM input:checked + .btnDM span:before {-webkit-transform: translateX(28px);-ms-transform: translateX(28px);transform: translateX(28px);} */
+
+ /* Pseudo Elements */
+.main_con.dm:before {content:url(../images/main_top_cut_dm.png);}
+.btm1_con.dm::before {content:url(../images/btm1_top_cut_dm.png);}
+.btm1_con.dm::after {content:url(../images/btm1_btm_cut_dm.png);}
+.footer_top_con.dm::before {content:url(../images/footer_top_cut_dm.png);}
+.footer_nav.dm::before, .footer_nav.dm::after{background: #222}
