@@ -29,6 +29,7 @@ class Go_Dark_Activator {
 	 *
 	 * @since    1.0.0
 	 */
+	
 	public static function activate() {
 		global $wpdb;
 		global $version;

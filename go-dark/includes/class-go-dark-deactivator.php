@@ -30,7 +30,18 @@ class Go_Dark_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-
+		global $wpdb;
+	
+		$table_name = $wpdb->prefix . 'darkmode_presets';
+		$sql = "DROP TABLE IF EXISTS $table_name";
+	
+		if(!function_exists('dbDelta')) {
+			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		}
+	
+		$wpdb->query($sql);
+	
+		delete_option('dark_mode_version');
 	}
 
 }

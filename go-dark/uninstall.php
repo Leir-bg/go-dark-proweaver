@@ -25,20 +25,24 @@
  * @package    Go_Dark
  */
 
-global $version;
-
 // If uninstall not called from WordPress, then exit.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-function uninstall_plugin(){
-	$table_name = $wpdb->prefix . 'darkmode_presets';
+// function uninstall_go_dark(){
+// 	global $wpdb;
+// 	global $version;
 
-	if(!function_exists('dbDelta')) {
-		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-	}
+// 	$table_name = $wpdb->prefix . 'darkmode_presets';
+// 	$sql = "DROP TABLE IF EXISTS $table_name";
 
-	$wpdb->query( "DROP TABLE IF EXISTS $table_name" );
-}
-register_uninstall_hook(__FILE__, 'uninstal_plugin')
+// 	if(!function_exists('dbDelta')) {
+// 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+// 	}
+
+// 	$wpdb->query($sql);
+
+// 	delete_option('dark_mode_version');
+// }
+// register_uninstall_hook(__FILE__, 'uninstall_go_dark');
