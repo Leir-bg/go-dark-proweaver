@@ -12,8 +12,14 @@
  * @subpackage Go_Dark/admin/partials
  */
 
-class adminDashboard{
-    public function construct(){
+class admin_dashboard{
+
+    /**
+     * This class initializes the content and look of the
+     * plugin page in the WordPress admin dashboard.
+     */
+
+    public function admin_view(){
         echo '
         <html>
             <body>
@@ -26,7 +32,7 @@ class adminDashboard{
     }
 }
 
-new adminDashboard();
+new admin_dashboard();
 
 ?>
 

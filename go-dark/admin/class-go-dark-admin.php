@@ -20,6 +20,7 @@
  * @subpackage Go_Dark/admin
  * @author     PRD1113, PRD978, PRD1256 <gabrielcorpuz0914@gmail.com, ejtsuson@gmail.com, jeb.proweaver@gmail.com>
  */
+
 class Go_Dark_Admin {
 
 	/**
@@ -51,7 +52,7 @@ class Go_Dark_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
+		add_action( 'admin_menu', array( $this, 'create_plugin_settings_page' ) );
 	}
 
 	/**
@@ -99,5 +100,30 @@ class Go_Dark_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/go-dark-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+
+	/**
+	 * Functions below creates the option tab and
+	 * content defined in admin_dashboard class
+	 * from partials/go-dark-admin-display.php 
+	 */
+
+	public function get_admin_view(){
+        require_once 'partials/go-dark-admin-display.php';
+
+		admin_dashboard::admin_view();
+    }
+
+    public function create_plugin_settings_page() {
+        // Add the menu item and page
+        $page_title = 'Go Dark settings';
+        $menu_title = 'Go Dark';
+        $capability = 'manage_options';
+        $slug = 'go-dark';
+        $callback = array( $this, 'get_admin_view' );
+        $icon = 'dashicons-beer';
+        $position = 100;
+    
+        add_menu_page( $page_title, $menu_title, $capability, $slug, $callback, $icon, $position );
+    }
 
 }
