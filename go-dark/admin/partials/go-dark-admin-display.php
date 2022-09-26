@@ -21,7 +21,14 @@ $pluginloc = plugin_dir_url(__DIR__);
     <body>
         <main>
             <h1>GO DARK PROWEAVER</h1>
-            <a href="javascript:;" class="alert">TRY</a>
+
+            <form action="submit_form" class="submit_form">
+                <label for="sections_for_dm">Input section IDs/Class:</label>
+                <input type="text" name="sections_for_dm" id="sections_for_dm" placeholder="separate with ( , )">
+
+                <input type="submit" value="Submit">
+            </form>
+
         </main>
     </body>
 </html>

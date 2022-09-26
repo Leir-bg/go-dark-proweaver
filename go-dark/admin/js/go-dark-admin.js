@@ -30,13 +30,25 @@
 	 */
 
 	$(document).ready(function(){
-		$('.alert').click(function(e){
-			e.preventDefault()
+		$('.submit_form input[type^="submit"]').click(function(e){
+			e.preventDefault();
 
-			window.alert('gana')
+			let inputvalue = $('.submit_form input[type^=text]').val();
+
+			$.ajax({
+				url: '../partials/go-dark-admin-database-functions.php',
+				type: 'add',
+				data: { //meaning ani object imong ilabay padung sa server
+					'data' : inputvalue
+				},
+				success: function(res){
+					console.log(res) // ang res kay mao ni ang imong dawaton nga response gikan sa server
+				},
+				error: function(err){
+					console.log(err)
+				}
+			});
 		})
 	})
-
-	 
 
 })( jQuery );
