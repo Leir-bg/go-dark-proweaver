@@ -29,18 +29,14 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-	 $.ajax({
-		url: '../partials/go-dark-admin-display.php',
-		type: 'post',
-		data: { //meaning ani object imong ilabay padung sa server
-			'id' : id
-		},
-		success: function(res){
-			console.log(res) // ang res kay mao ni ang imong dawaton nga response gikan sa server
-		},
-		error: function(err){
-			console.log(err)
-		}
-	});
+	$(document).ready(function(){
+		$('.alert').click(function(e){
+			e.preventDefault()
+
+			window.alert('gana')
+		})
+	})
+
+	 
 
 })( jQuery );

@@ -12,28 +12,16 @@
  * @subpackage Go_Dark/admin/partials
  */
 
-class admin_dashboard{
-
-    /**
-     * This class initializes the content and look of the
-     * plugin page in the WordPress admin dashboard.
-     */
-
-    public function admin_view(){
-        echo '
-        <html>
-            <body>
-                <h1>GO DARK PROWEAVER</h1>
-
-                <a href="javascript:;" class="alert">TRY</a>
-            </body>
-        </html>
-        ';
-    }
-}
-
-new admin_dashboard();
-
+$pluginloc = plugin_dir_url(__DIR__);
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
+
+<html>
+    <body>
+        <main>
+            <h1>GO DARK PROWEAVER</h1>
+            <a href="javascript:;" class="alert">TRY</a>
+        </main>
+    </body>
+</html>

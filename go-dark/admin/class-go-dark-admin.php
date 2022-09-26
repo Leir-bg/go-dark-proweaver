@@ -108,9 +108,7 @@ class Go_Dark_Admin {
 	 */
 
 	public function get_admin_view(){
-        require_once 'partials/go-dark-admin-display.php';
-
-		admin_dashboard::admin_view();
+        include 'partials/go-dark-admin-display.php';
     }
 
     public function create_plugin_settings_page() {

@@ -46,9 +46,7 @@ class Go_Dark_Activator {
 		) $charset_collate;";
 
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-		maybe_create_table($table_name, $sql );  
-
-		add_option( 'dark_mode_version', $version );
+		maybe_create_table($table_name, $sql );
 	}
 	
 }
