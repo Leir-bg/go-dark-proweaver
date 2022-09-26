@@ -34,18 +34,19 @@
 			e.preventDefault();
 
 			let inputvalue = $('.submit_form input[type^=text]').val();
+			let filepath = '../wp-content/plugins/go-dark/admin/partials/go-dark-admin-database-functions.php';
 
 			$.ajax({
-				url: '../partials/go-dark-admin-database-functions.php',
-				type: 'add',
-				data: { //meaning ani object imong ilabay padung sa server
+				url: filepath,
+				type: 'post',
+				data: {
 					'data' : inputvalue
 				},
 				success: function(res){
-					console.log(res) // ang res kay mao ni ang imong dawaton nga response gikan sa server
+					console.log(res)
 				},
 				error: function(err){
-					console.log(err)
+					console.log(filepath + '|' + err)
 				}
 			});
 		})
