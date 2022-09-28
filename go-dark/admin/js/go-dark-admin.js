@@ -40,7 +40,8 @@
 				url: filepath,
 				type: 'post',
 				data: {
-					'data' : inputvalue
+					func : 'insert',
+					dataVal : inputvalue
 				},
 				success: function(res){
 					console.log(res)
