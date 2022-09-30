@@ -33,7 +33,8 @@
 		$('.submit_form input[type^="submit"]').click(function(e){
 			e.preventDefault();
 
-			let inputvalue = $('.submit_form input[type^=text]').val();
+			let secvalue = $('#sections_for_dm').val();
+			let shavalue = $('#shade_for_dm').val();
 			let filepath = '../wp-content/plugins/go-dark/admin/partials/go-dark-admin-database-functions.php';
 
 			$.ajax({
@@ -41,10 +42,11 @@
 				type: 'post',
 				data: {
 					func : 'insert',
-					dataVal : inputvalue
+					section : secvalue,
+					shade : shavalue
 				},
 				success: function(res){
-					console.log(res)
+					window.alert('added');
 				},
 				error: function(err){
 					console.log(filepath + '|' + err)

@@ -12,7 +12,6 @@
  * @subpackage Go_Dark/admin/partials
  */
 
-$pluginloc = plugin_dir_url(__DIR__);
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
@@ -22,9 +21,12 @@ $pluginloc = plugin_dir_url(__DIR__);
         <main>
             <h1>GO DARK PROWEAVER</h1>
 
-            <form action="submit_form" class="submit_form">
+            <form action="submit_form" class="submit_form" method="post">
                 <label for="sections_for_dm">Input section IDs/Class:</label>
                 <input type="text" name="sections_for_dm" id="sections_for_dm" placeholder="separate with ( , )">
+
+                <label for="shade_for_dm">Shade:</label>
+                <input type="text" name="shade_for_dm" id="shade_for_dm" placeholder="#000">
 
                 <input type="submit" value="Submit">
             </form>

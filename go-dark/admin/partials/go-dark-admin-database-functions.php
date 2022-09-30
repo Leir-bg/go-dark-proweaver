@@ -9,15 +9,15 @@
  * Adding data to db
  */
 
-function insertToDB(){
-    require_once(str_replace('\\', '/', dirname(__FILE__, 6)) . '/wp-systcon/wp-config.php');
+require_once(str_replace('\\', '/', dirname(__FILE__, 6)) . '/wp-systcon/wp-load.php');
 
+function insertToDB(){
     global $wpdb;
     $table_name = $wpdb->prefix . 'darkmode_presets';
-    $section = "".$_POST['dataVal']."";
+    $section = "".$_POST['section']."";
+    $shade = "".$_POST['shade']."";
 
-    $sql = "INSERT INTO $table_name ('id','sections','shade') values (0,$section,'#000')";
-    $wpdb->query($sql);
+    $wpdb->insert($table_name, array('sections'=>$section, 'shade'=>$shade));
 }
 
 
@@ -29,12 +29,11 @@ if( !isset($aResult['error']) ) {
 
     switch($_POST['func']) {
         case 'insert':
-            if( !isset($_POST['dataVal'])) {
+            if( !isset($_POST['section']) || !isset($_POST['shade'])) {
                 $aResult['error'] = 'Error in arguments!';
             }
             else {
                 insertToDB();
-                echo json_encode('gana');
             }
             break;
 
@@ -44,5 +43,3 @@ if( !isset($aResult['error']) ) {
     }
 
 }
-
-echo json_encode($aResult);
