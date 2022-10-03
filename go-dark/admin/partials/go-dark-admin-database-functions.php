@@ -5,13 +5,25 @@
  * 
  */
 
+ /**
+  * Require wp-load for $wpdb prefixes.
+  * 
+  * Fallback function below incase of unupdated website security.
+  */
+
+$req_path = str_replace('\\', '/', dirname(__FILE__, 6));
+
+if(is_dir(dirname(__FILE__, 6))){
+    require_once($req_path . '/wp-systcon/wp-load.php');
+}else{
+    require_once($req_path . '/wp-load.php');
+}
+
 /**
  * Adding data to db
  */
 
-require_once(str_replace('\\', '/', dirname(__FILE__, 6)) . '/wp-systcon/wp-load.php');
-
-function insertToDB(){
+function insertData(){
     global $wpdb;
     $table_name = $wpdb->prefix . 'darkmode_presets';
     $section = "".$_POST['section']."";
@@ -20,6 +32,33 @@ function insertToDB(){
     $wpdb->insert($table_name, array('sections'=>$section, 'shade'=>$shade));
 }
 
+/**
+ * Retrieve data from db
+ */
+
+function retrieveData(){
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'darkmode_presets';
+    
+    $sql = "SELECT * FROM $table_name";
+    $results = $wpdb->get_results($sql);
+
+    $html = "";
+
+    // $table_data.each(function(){
+    //     $html += "<tr><td>".."</td></tr>"
+    // })
+
+    $table_data = array();
+
+    foreach ($results as $key => $result) {
+        $table_data['id'][$key] = $result->id;
+        $table_data['section'][$key] = $result->sections;
+        $table_data['shade'][$key] = $result->shade;
+    }
+
+echo json_encode($table_data);
+}
 
 $aResult = array();
 
@@ -33,13 +72,17 @@ if( !isset($aResult['error']) ) {
                 $aResult['error'] = 'Error in arguments!';
             }
             else {
-                insertToDB();
+                insertData();
             }
+            break;
+
+        case 'retrieve':
+            retrieveData();
+
             break;
 
         default:
             $aResult['error'] = 'Not found function '.$_POST['func'].'!';
             break;
     }
-
 }

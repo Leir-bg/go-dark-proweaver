@@ -2,3 +2,16 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+ body{}
+ main{}
+
+ .cont{padding-right: 25px; display: flex; justify-content: space-between; align-items: flex-start;}
+
+ main form label{display: block; margin: 20px 0 5px;}
+ main form label:first-of-type{margin-top: 0;}
+
+ .data_table { border-collapse: collapse;}
+ tr, td, th { border: 1px solid gray; text-align: center;}
+ .data_table thead tr th { padding: 10px 20px; background: gray; color: #fff; }
+ .data_table tbody td{padding: 5px 20px;}

@@ -29,13 +29,52 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
+	let filepath = '../wp-content/plugins/go-dark/admin/partials/go-dark-admin-database-functions.php';
+
+	$(window).on('load', function(){
+
+		console.log('window loaded');
+
+		$.ajax({
+			url: filepath,
+			type: 'post',
+			data: {
+				func: 'retrieve'
+			},
+			success: function(res){
+				var data = JSON.parse(res);
+
+				$(data).each(function(key, value){
+					var id = $(value)[key].id;
+					var section = $(value)[key].section;
+					var shade = $(value)[key].shade;
+
+					var html = "";
+
+					id.forEach((r, k) => {
+						console.log(r+" "+k)
+						html += "<tr><td>"+section[k]+"</td><td>"+shade[k]+"</td></tr>"
+					});
+
+					$('.data_table tbody').append(html);
+				});
+				
+			},
+			error: function(err){
+				console.log(err);
+			}
+		})
+	})
+
 	$(document).ready(function(){
+
+		console.log('document ready');
+		
 		$('.submit_form input[type^="submit"]').click(function(e){
 			e.preventDefault();
 
 			let secvalue = $('#sections_for_dm').val();
 			let shavalue = $('#shade_for_dm').val();
-			let filepath = '../wp-content/plugins/go-dark/admin/partials/go-dark-admin-database-functions.php';
 
 			$.ajax({
 				url: filepath,
@@ -47,6 +86,8 @@
 				},
 				success: function(res){
 					window.alert('added');
+
+					location.reload();
 				},
 				error: function(err){
 					console.log(filepath + '|' + err)
