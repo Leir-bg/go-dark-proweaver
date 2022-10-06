@@ -45,10 +45,6 @@ function retrieveData(){
 
     $html = "";
 
-    // $table_data.each(function(){
-    //     $html += "<tr><td>".."</td></tr>"
-    // })
-
     $table_data = array();
 
     foreach ($results as $key => $result) {

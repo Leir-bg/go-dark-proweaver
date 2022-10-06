@@ -27,7 +27,13 @@
                     <input type="text" name="sections_for_dm" id="sections_for_dm" placeholder="start with # or .">
 
                     <label for="shade_for_dm">Shade:</label>
-                    <input type="text" name="shade_for_dm" id="shade_for_dm" placeholder="#000">
+                    <div class="color_box"></div>
+                    <small class="color_text"></small>
+                    <select name="shade_for_dm" id="shade_for_dm">
+                        <option value="#000000">Shade 1</option>
+                        <option value="#1a1a1a">Shade 2</option>
+                        <option value="#2e2e2e">Shade 3</option>
+                    </select>
 
                     <input type="submit" value="Submit">
                 </form>

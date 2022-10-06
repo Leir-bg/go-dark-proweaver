@@ -29,6 +29,36 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
+	/** Get data from database on page load */
+	let filepath = 'wp-content/plugins/go-dark/admin/partials/go-dark-admin-database-functions.php';
+	var id = [],
+		section = [],
+		shade = [];
+
+	$(window).on('load', function(){
+		console.log('window loaded');
+
+		$.ajax({
+			url: filepath,
+			type: 'post',
+			data: {
+				func: 'retrieve'
+			},
+			success: function(res){
+				var data = JSON.parse(res);
+
+				$(data).each((index, value) => {
+					id = $(value)[index].id;
+					section = $(value)[index].section;
+					shade = $(value)[index].shade;
+				})
+			},
+			error: function(err){
+				console.log(err);
+			}
+		})
+	})
+
 	/** TRIGGER DARK MODE */
 	$(document).ready(function(){
 		checkStatus(localStorage.getItem('status'))

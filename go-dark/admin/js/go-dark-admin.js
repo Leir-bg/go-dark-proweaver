@@ -52,7 +52,6 @@
 					var html = "";
 
 					id.forEach((r, k) => {
-						console.log(r+" "+k)
 						html += "<tr><td>"+section[k]+"</td><td>"+shade[k]+"</td></tr>"
 					});
 
@@ -93,6 +92,26 @@
 					console.log(filepath + '|' + err)
 				}
 			});
+		})
+
+		var box = $('.cont .color_box'),
+			box_text = $('.cont .color_text');
+
+		$('.cont form select option').click(() => {
+			switch ($('#shade_for_dm').val()) {
+				case '#000000':
+					box.css('background', '#000000')
+					box_text.html('#000000');
+					break;
+				case '#1a1a1a':
+					box.css('background', '#1a1a1a')
+					box_text.html('#1a1a1a');
+					break;
+				case '#2e2e2e':
+					box.css('background', '#2e2e2e')
+					box_text.html('#2e2e2e');
+					break;
+			}
 		})
 	})
 

@@ -8,10 +8,16 @@
 
  .cont{padding-right: 25px; display: flex; justify-content: space-between; align-items: flex-start;}
 
- main form label{display: block; margin: 20px 0 5px;}
- main form label:first-of-type{margin-top: 0;}
+ main .cont form label{display: block; margin: 20px 0 5px;}
+ main .cont form label:first-of-type{margin-top: 0;}
 
- .data_table { border-collapse: collapse;}
- tr, td, th { border: 1px solid gray; text-align: center;}
- .data_table thead tr th { padding: 10px 20px; background: gray; color: #fff; }
- .data_table tbody td{padding: 5px 20px;}
+ .cont .data_table { border-collapse: collapse;}
+ .cont tr, .cont td, .cont th { border: 1px solid gray; text-align: center;}
+ .cont .data_table thead tr th { padding: 10px 20px; background: gray; color: #fff; }
+ .cont .data_table tbody td{padding: 5px 20px;}
+
+ .cont form{position: relative;}
+
+ .cont form select{display: inline-block; vertical-align: middle;}
+ .cont .color_box{display: inline-block; width: 30px; height: 30px; border: 1px solid #000; vertical-align: middle; background: #fff;}
+ .cont .color_text{position: absolute; bottom: -18px; left: -8px;}
