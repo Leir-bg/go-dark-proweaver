@@ -19,6 +19,10 @@ if(is_dir(dirname(__FILE__, 6))){
     require_once($req_path . '/wp-load.php');
 }
 
+
+$section = "".$_POST['section']."";
+$shade = "".$_POST['shade']."";
+
 /**
  * Adding data to db
  */
@@ -56,6 +60,22 @@ function retrieveData(){
 echo json_encode($table_data);
 }
 
+/**
+ * Deleting of table row
+ */
+
+function deleteData(){
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'darkmode_presets';
+    $id = "".$_POST['id']."";
+
+    $wpdb->delete($table_name, array('id'=>$id));
+}
+
+/** 
+ * Code block below manages the data passing from JS to this file
+ */
+
 $aResult = array();
 
 if( !isset($_POST['func']) ) { $aResult['error'] = 'No function!'; }
@@ -74,6 +94,11 @@ if( !isset($aResult['error']) ) {
 
         case 'retrieve':
             retrieveData();
+
+            break;
+
+        case 'delete':
+            deleteData();
 
             break;
 

@@ -31,20 +31,17 @@
 
 	let filepath = '../wp-content/plugins/go-dark/admin/partials/go-dark-admin-database-functions.php';
 
-	$(window).on('load', function(){
-
-		console.log('window loaded');
-
+	$(window).on('load', () => {
 		$.ajax({
 			url: filepath,
 			type: 'post',
 			data: {
 				func: 'retrieve'
 			},
-			success: function(res){
+			success: (res) => {
 				var data = JSON.parse(res);
 
-				$(data).each(function(key, value){
+				$(data).each((key, value) => {
 					var id = $(value)[key].id;
 					var section = $(value)[key].section;
 					var shade = $(value)[key].shade;
@@ -52,24 +49,21 @@
 					var html = "";
 
 					id.forEach((r, k) => {
-						html += "<tr><td>"+section[k]+"</td><td>"+shade[k]+"</td></tr>"
+						html += "<tr><td>"+r+"</td><td>"+section[k]+"</td><td>"+shade[k]+"</td><td><a class='deleteBtn' href='javascript:;'>delete?</a></td></tr>"
 					});
 
 					$('.data_table tbody').append(html);
 				});
 				
 			},
-			error: function(err){
+			error: (err) => {
 				console.log(err);
 			}
 		})
 	})
 
-	$(document).ready(function(){
-
-		console.log('document ready');
-		
-		$('.submit_form input[type^="submit"]').click(function(e){
+	$(document).ready(() => {
+		$('.submit_form input[type^="submit"]').click((e) => {
 			e.preventDefault();
 
 			let secvalue = $('#sections_for_dm').val();
@@ -83,12 +77,12 @@
 					section : secvalue,
 					shade : shavalue
 				},
-				success: function(res){
+				success: (res) => {
 					window.alert('added');
 
 					location.reload();
 				},
-				error: function(err){
+				error: (err) => {
 					console.log(filepath + '|' + err)
 				}
 			});
@@ -112,6 +106,31 @@
 					box_text.html('#2e2e2e');
 					break;
 			}
+		})
+
+		$(document).on('click', '.data_table a.deleteBtn', (e) => {
+			var col_id;
+
+			var row = $(e.currentTarget).closest('tr')
+			col_id = row.find('td:first-child').text()
+
+			$.ajax({
+				url: filepath,
+				type: 'post',
+				data: {
+					func: 'delete',
+					id: col_id
+				},
+				success: (res) => {
+					console.log(res)
+
+					alert('deleted')
+					location.reload();
+				},
+				error: (err) => {
+					console.log(err)
+				}
+			})
 		})
 	})
 

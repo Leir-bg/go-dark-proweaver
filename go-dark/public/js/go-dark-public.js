@@ -31,12 +31,11 @@
 
 	/** Get data from database on page load */
 	let filepath = 'wp-content/plugins/go-dark/admin/partials/go-dark-admin-database-functions.php';
-	var id = [],
-		section = [],
-		shade = [];
 
-	$(window).on('load', function(){
-		console.log('window loaded');
+	/** TRIGGER DARK MODE */
+	$(document).ready(function(){
+
+		
 
 		$.ajax({
 			url: filepath,
@@ -46,21 +45,27 @@
 			},
 			success: function(res){
 				var data = JSON.parse(res);
+				var id = [],
+				section = [],
+				shade = [];
 
 				$(data).each((index, value) => {
-					id = $(value)[index].id;
-					section = $(value)[index].section;
-					shade = $(value)[index].shade;
+					getter($(value)[index].id, $(value)[index].section, $(value)[index].shade)
 				})
+
+				getter(id, section, shade)
 			},
 			error: function(err){
 				console.log(err);
 			}
 		})
-	})
 
-	/** TRIGGER DARK MODE */
-	$(document).ready(function(){
+		let getter = (i, se, sh) => {
+			console.log(i+" "+se+" "+sh)
+
+			se.css('background', sh)
+		}
+
 		checkStatus(localStorage.getItem('status'))
 	 
 		var btn = document.createElement('div')
@@ -81,65 +86,66 @@
 		})
 		
 		checkBtnStatus(localStorage.getItem('status'))
-	})
 
-	/** DARK MODE FUNCTIONS */
+		/** DARK MODE FUNCTIONS */
 
-	/** SET TO DARK MODE */
-	function setDark(){
-		$('.main_con, .btm1_con, .footer_top_con, .footer_nav').addClass('dm'); //para sa pseudo elements ni siya
-
-		/** Applying darkmode css start */
-		$('.header_con, #nav_area, #main_area, div[id^="bottom"]:nth-of-type(2n), .footer_btm, .footer_nav').css({'background':'#222','color':'#fff'});
-		$('.bnr_info, div[id^="bottom"]:nth-of-type(2n+1), .footer_top').css({'background':'#333','color':'#fff'});
-
-		$('*').each(function() {
-			if( $(this).css('color') == 'rgb(69, 69, 69)' || $(this).css('color') == 'rgb(26, 26, 26)' || $(this).css('color') == 'rgb(51, 51, 51)' ) {
-				$(this).css('color','#fff');
-			}
+		/** SET TO DARK MODE */
+		function setDark(){
 			
-			if( $(this).css('background-color') == 'rgb(255, 255, 255)' || $(this).css('background-color') == 'rgb(245, 245, 245)' ) {
-				$(this).css('background','#222');
-			}
-		});
-		/** Applying darkmode css end */
+			$('.main_con, .btm1_con, .footer_top_con, .footer_nav').addClass('dm'); //para sa pseudo elements ni siya
 
-		$('*').find('li, a:not(nav.page_nav ul li a, .footer_nav ul li a), a span').css({'background':'','color':''});
-	}
+			/** Applying darkmode css start */
+			$('.header_con, #nav_area, #main_area, div[id^="bottom"]:nth-of-type(2n), .footer_btm, .footer_nav').css({'background':'#222','color':'#fff'});
+			$('.bnr_info, div[id^="bottom"]:nth-of-type(2n+1), .footer_top').css({'background':'#333','color':'#fff'});
 
-	/** REVERT TO DEFAULT */
-	function setDefault(){
-		$('.main_con, .btm1_con, .footer_top_con, .footer_nav').removeClass('dm');
+			$('*').each(function() {
+				if( $(this).css('color') == 'rgb(69, 69, 69)' || $(this).css('color') == 'rgb(26, 26, 26)' || $(this).css('color') == 'rgb(51, 51, 51)' ) {
+					$(this).css('color','#fff');
+				}
+				
+				if( $(this).css('background-color') == 'rgb(255, 255, 255)' || $(this).css('background-color') == 'rgb(245, 245, 245)' ) {
+					$(this).css('background','#222');
+				}
+			});
+			/** Applying darkmode css end */
 
-		$('header, #nav_area, #main_area, #bottom2').css({'background':'','color':''});
-		$('.bnr_info, #bottom1, footer').css({'background':'','color':''});
-
-		$('*').each(function() {
-			if($(this).css('color').length > 0 || $(this).css('background').length > 0) {
-				$(this).css('color','');
-				$(this).css('background','');
-			}
-		});
-	}
-
-	//mucheck if naka darkmode ang site
-	function checkStatus(status){
-		if(status != 1){
-			return
-		}else{
-			setDark();
+			$('*').find('li, a:not(nav.page_nav ul li a, .footer_nav ul li a), a span').css({'background':'','color':''});
 		}
-	}
 
-	function checkBtnStatus(status){ //temporary
-		if(status != 1){
-			return
-		}else{
-			$('.btnDM').addClass('active');
+		/** REVERT TO DEFAULT */
+		function setDefault(){
+			$('.main_con, .btm1_con, .footer_top_con, .footer_nav').removeClass('dm');
+
+			$('header, #nav_area, #main_area, #bottom2').css({'background':'','color':''});
+			$('.bnr_info, #bottom1, footer').css({'background':'','color':''});
+
+			$('*').each(function() {
+				if($(this).css('color').length > 0 || $(this).css('background').length > 0) {
+					$(this).css('color','');
+					$(this).css('background','');
+				}
+			});
 		}
-	}
 
-	// /** DARK MODE FUNCTION - END HERE */
-	// /**DARK MODE END */
+		//mucheck if naka darkmode ang site
+		function checkStatus(status){
+			if(status != 1){
+				return
+			}else{
+				setDark();
+			}
+		}
+
+		function checkBtnStatus(status){ //temporary
+			if(status != 1){
+				return
+			}else{
+				$('.btnDM').addClass('active');
+			}
+		}
+
+		// /** DARK MODE FUNCTION - END HERE */
+		// /**DARK MODE END */
+	})
 
 })( jQuery );

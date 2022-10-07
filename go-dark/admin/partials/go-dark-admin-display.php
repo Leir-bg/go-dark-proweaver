@@ -40,7 +40,7 @@
 
                 <table class="data_table">
                     <thead>
-                        <tr><th>Section</th><th>Shade</th></tr>
+                        <tr><th>ID</th><th>Section</th><th>Shade</th><th></th></tr>
                     </thead>
                     <tbody>
 
