@@ -31,7 +31,8 @@
 
 	let filepath = '../wp-content/plugins/go-dark/admin/partials/go-dark-admin-database-functions.php';
 
-	$(window).on('load', () => {
+	$(document).ready(() => {
+
 		$.ajax({
 			url: filepath,
 			type: 'post',
@@ -60,9 +61,7 @@
 				console.log(err);
 			}
 		})
-	})
 
-	$(document).ready(() => {
 		$('.submit_form input[type^="submit"]').click((e) => {
 			e.preventDefault();
 

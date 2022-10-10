@@ -47,9 +47,7 @@ function retrieveData(){
     $sql = "SELECT * FROM $table_name";
     $results = $wpdb->get_results($sql);
 
-    $html = "";
-
-    $table_data = array();
+    $table_data = [];
 
     foreach ($results as $key => $result) {
         $table_data['id'][$key] = $result->id;
@@ -57,7 +55,7 @@ function retrieveData(){
         $table_data['shade'][$key] = $result->shade;
     }
 
-echo json_encode($table_data);
+    echo json_encode($table_data);
 }
 
 /**
@@ -73,10 +71,11 @@ function deleteData(){
 }
 
 /** 
- * Code block below manages the data passing from JS to this file
+ * Code block below manages data passing
+ * from JS to this file and vice versa
  */
 
-$aResult = array();
+$aResult = [];
 
 if( !isset($_POST['func']) ) { $aResult['error'] = 'No function!'; }
 
