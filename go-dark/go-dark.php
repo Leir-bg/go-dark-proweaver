@@ -8,17 +8,16 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://web4.proweaverlinks.com/MAINTENANCE/FORRESEARCH/
+ * @link              
  * @since             1.0.0
  * @package           Go_Dark
  *
  * @wordpress-plugin
  * Plugin Name:       Go Dark Proweaver
- * Plugin URI:        https://web4.proweaverlinks.com/MAINTENANCE/FORRESEARCH/
  * Description:       Dark mode for Proweaver themes.
  * Version:           1.0.0
  * Author:            PRD1113, PRD978, PRD1256
- * Author URI:        https://web4.proweaverlinks.com/MAINTENANCE/FORRESEARCH/
+ * Author URI:        
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       go-dark

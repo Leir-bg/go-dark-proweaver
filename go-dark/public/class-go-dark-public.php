@@ -3,7 +3,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       https://web4.proweaverlinks.com/MAINTENANCE/FORRESEARCH/
+ * @link       
  * @since      1.0.0
  *
  * @package    Go_Dark
